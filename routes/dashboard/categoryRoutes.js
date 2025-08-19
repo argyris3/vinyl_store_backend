@@ -1,0 +1,11 @@
+
+const categoryController = require('../../controllers/dashboard/categoryController')
+const { authMiddleware } = require('../../middleware/authMiddleware')
+
+const router = require('express').Router()
+
+router.post('/category-add', authMiddleware, categoryController.add_category)
+router.get('/category-get', authMiddleware, categoryController.get_category)
+module.exports = router
+router.put('/category-update/:id', authMiddleware, categoryController.update_category)
+router.delete('/category/:id', categoryController.deleteCategory) 
