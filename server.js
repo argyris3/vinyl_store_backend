@@ -12,7 +12,7 @@ const http = require('http');
 
 const server = http.createServer(app);
 
-const allowedOrigins = process.env.mode === "pro" ? [process.env.client_customer_production_url, process.env.client_admin_production_url] : ['http://localhost:3000', 'http://localhost:5173']
+const allowedOrigins = process.env.mode === "pro" ? [process.env.client_customer_production_url, process.env.client_admin_production_url] : ['http://localhost:3000', 'http://localhost:5174']
 
 
 app.use(
