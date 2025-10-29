@@ -23,7 +23,12 @@ class authControllers {
             id: admin.id,
             role: admin.role,
           });
-          res.cookie('accessToken', token, { expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) });
+          res.cookie('accessToken', token, {
+            httpOnly: true,
+            secure: true,
+            samesite: "none",
+            maxAge: 7 * 24 * 60 * 60 * 1000
+          })
           responseReturn(res, 200, { token, message: 'login ola kala' });
         } else {
           responseReturn(res, 404, { error: 'password wrong' });
@@ -48,7 +53,12 @@ class authControllers {
             id: seller.id,
             role: seller.role,
           });
-          res.cookie('accessToken', token, { expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) });
+          res.cookie('accessToken', token, {
+            httpOnly: true,
+            secure: true,
+            samesite: "none",
+            maxAge: 7 * 24 * 60 * 60 * 1000
+          })
           responseReturn(res, 200, { token, message: 'login ola kala' });
         } else {
           responseReturn(res, 404, { error: 'password wrong' });
