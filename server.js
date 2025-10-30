@@ -8,6 +8,8 @@ const { dbConnect } = require('./utils/db');
 
 const socket = require('socket.io');
 
+
+
 const http = require('http');
 
 const server = http.createServer(app);
@@ -15,11 +17,7 @@ const server = http.createServer(app);
 const allowedOrigins = process.env.mode === "pro" ? [process.env.client_customer_production_url, process.env.client_admin_production_url] : ['http://localhost:3000', 'http://localhost:5173']
 
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");  // Allow any domain
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+
 
 
 app.use(
@@ -39,14 +37,17 @@ app.use(
 const io = socket(server, {
   cors: {
     origin: function (origin, callback) {
+
       if (!origin || allowedOrigins.includes(origin)) {
+
         callback(null, true);
       } else {
         callback(new Error("Not allowed by Cors"))
       }
 
     },
-    credentials: true
+    credentials: true,
+    transports: ['websocket', 'polling'],
   }
 })
 
