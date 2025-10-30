@@ -47,7 +47,7 @@ const io = socket(server, {
 
     },
     credentials: true,
-    transports: ['websocket', 'polling'],
+
   }
 })
 
